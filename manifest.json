@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Faltore.al subscriber",
+  "author": "Gezim Musliaj <gmusliaj@gmail.com>",
+  "description": "This extension adds the possibility to subscribe to a confession at Faltore.al and get notified when someone comments",
+  "version": "1.0",
+  "permissions": [
+    "alarms",
+    "tabs", "<all_urls>",
+    "storage"
+  ],
+  "background": {
+      "persistent": false,
+      "page": "background.html"
+  },
+  "browser_action": {
+    "default_icon": {
+      "32": "faltore.png"
+    }
+  },
+  "externally_connectable": {
+    "matches": ["*://*.faltore.al/*"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.faltore.al/*"],
+      "js" : ["injectedScript.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
